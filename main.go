@@ -5,6 +5,9 @@ import (
 	"log"
 	"net/http"
 
+	"croacker.com/cemetery-park/api"
+	"croacker.com/cemetery-park/conf"
+	"croacker.com/cemetery-park/data"
 	"github.com/gorilla/mux"
 )
 
@@ -14,9 +17,18 @@ type RespJ struct {
 }
 
 func main() {
+	configuration := conf.Get()
+	log.Printf("Port '%s'", configuration.Port)
+	log.Printf("DB path '%s'", configuration.Sqlite.DbPath)
+
+	db := data.NewSqliteDB(configuration.Sqlite.DbPath)
+	api := api.NewAPI(db)
+	log.Printf("api '%s'", api)
+
 	r := mux.NewRouter()
 	r.HandleFunc("/", handler)
-	log.Fatal(http.ListenAndServe(":8080", r))
+	port := ":" + configuration.Port
+	log.Fatal(http.ListenAndServe(port, r))
 }
 
 func handler(w http.ResponseWriter, r *http.Request) {
