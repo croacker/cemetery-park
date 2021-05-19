@@ -30,7 +30,8 @@ func newRoutes(api *api.API) *mux.Router {
 	mux.PathPrefix("/js").Handler(http.StripPrefix("/js/", http.FileServer(http.Dir(clientFolder+"/js/"))))
 	mux.PathPrefix("/img").Handler(http.StripPrefix("/img/", http.FileServer(http.Dir(clientFolder+"/img/"))))
 	mux.PathPrefix("/css").Handler(http.StripPrefix("/css/", http.FileServer(http.Dir(clientFolder+"/css/"))))
-	mux.PathPrefix("/font").Handler(http.StripPrefix("/font/", http.FileServer(http.Dir(clientFolder+"/font/"))))
+	mux.PathPrefix("/fonts").Handler(http.StripPrefix("/fonts/", http.FileServer(http.Dir(clientFolder+"/fonts/"))))
+	mux.PathPrefix("/icons").Handler(http.StripPrefix("/icons/", http.FileServer(http.Dir(clientFolder+"/icons/"))))
 
 	// api
 	mux.HandleFunc("/api", ListApiHandler)
