@@ -4,8 +4,8 @@ import (
 	"log"
 	"net/http"
 
-	"../api"
-	"../conf"
+	"croacker.com/cemetery-park/api"
+	"croacker.com/cemetery-park/conf"
 	"github.com/gorilla/mux"
 )
 
@@ -36,28 +36,28 @@ func newRoutes(api *api.API) *mux.Router {
 	mux.HandleFunc("/api", ListApiHandler)
 	apiRouter := mux.PathPrefix("/api").Subrouter()
 
-	apiRouter.HandleFunc("/user", api.UsersAll).Methods("GET")
-	apiRouter.HandleFunc("/user/{id}", api.GetUser).Methods("GET")
+	apiRouter.HandleFunc("/user", api.AllUsers).Methods("GET")
+	apiRouter.HandleFunc("/user/{id}", api.UserByID).Methods("GET")
 	apiRouter.HandleFunc("/user", api.CreateUser).Methods("POST")
 	apiRouter.HandleFunc("/user/{id}", api.UpdateUser).Methods("PUT")
 	apiRouter.HandleFunc("/user/{id}", api.DeleteUser).Methods("DELETE")
 
-	apiRouter.HandleFunc("/quarter", api.QuartersAll).Methods("GET")
-	apiRouter.HandleFunc("/quarter/{id}", api.GetQuarter).Methods("GET")
+	apiRouter.HandleFunc("/quarter", api.AllQuarters).Methods("GET")
+	apiRouter.HandleFunc("/quarter/{id}", api.QuarterByID).Methods("GET")
 	apiRouter.HandleFunc("/quarter", api.CreateQuarter).Methods("POST")
 	apiRouter.HandleFunc("/quarter/{id}", api.UpdateQuarter).Methods("PUT")
 	apiRouter.HandleFunc("/quarter/{id}", api.DeleteQuarter).Methods("DELETE")
 
-	apiRouter.HandleFunc("/area", api.AreasAll).Methods("GET")
-	apiRouter.HandleFunc("/area/{id}", api.GetArea).Methods("GET")
+	apiRouter.HandleFunc("/area", api.AllAreas).Methods("GET")
+	apiRouter.HandleFunc("/area/{id}", api.AreaByID).Methods("GET")
 	apiRouter.HandleFunc("/area", api.CreateArea).Methods("POST")
-	apiRouter.HandleFunc("/area/{id}", api.UpdateeArea).Methods("PUT")
+	apiRouter.HandleFunc("/area/{id}", api.UpdateArea).Methods("PUT")
 	apiRouter.HandleFunc("/area/{id}", api.DeleteArea).Methods("DELETE")
 
-	apiRouter.HandleFunc("/burial", api.BurialsAll).Methods("GET")
-	apiRouter.HandleFunc("/burial/{id}", api.GetBurial).Methods("GET")
+	apiRouter.HandleFunc("/burial", api.AllBurials).Methods("GET")
+	apiRouter.HandleFunc("/burial/{id}", api.BurialByID).Methods("GET")
 	apiRouter.HandleFunc("/burial", api.CreateBurial).Methods("POST")
-	apiRouter.HandleFunc("/area/{id}", api.UpdateeBurial).Methods("PUT")
+	apiRouter.HandleFunc("/area/{id}", api.UpdateBurial).Methods("PUT")
 	apiRouter.HandleFunc("/burial/{id}", api.DeleteBurial).Methods("DELETE")
 
 	return mux

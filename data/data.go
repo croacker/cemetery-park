@@ -1,6 +1,7 @@
 package data
 
 import (
+	"log"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/sqlite"
 )
@@ -23,4 +24,11 @@ func NewSqliteDB(databaseName string) *DB {
 	}
 
 	return &DB{db}
+}
+
+//Process error
+func handleError(err error) {
+	if err != nil {
+		log.Println(err)
+	}
 }

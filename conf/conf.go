@@ -43,7 +43,8 @@ func load() (*Configuration, error) {
 	dbPath := os.Getenv(CEMETERY_PARK_DB_PATH)
 
 	return &Configuration{
-		Port: port,
+		Port:         port,
+		ClientFolder: "client",
 		Sqlite: SqliteConfig{
 			DbPath: dbPath,
 		},
